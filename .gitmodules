@@ -1,0 +1,3 @@
+[submodule "smptera-format-identifiers"]
+	path = smptera-format-identifiers
+	url = https://github.com/dholroyd/smptera-format-identifiers.git

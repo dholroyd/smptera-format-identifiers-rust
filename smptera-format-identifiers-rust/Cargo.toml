@@ -1,0 +1,13 @@
+[package]
+name = "smptera-format-identifers-rust"
+version = "0.1.0"
+authors = ["David Holroyd <dave@badgers-in-foil.co.uk>"]
+edition = "2018"
+description = "Constants and enum variants for Format Identifiers defined by the SMPTE Registration Authority"
+license = "MIT/Apache-2.0"
+repository = "https://github.com/dholroyd/smptera-format-identifiers-rust"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+four-cc = "0.1.0"
