@@ -10,6 +10,11 @@ fn main() {
     let mut records = database::load(Path::new("../smptera-format-identifiers/Public.csv"))
         .expect("Public.csv");
     let mut scope = Scope::new();
+    scope.raw("// --------
+// WARNING
+// This is generated code.
+// If you need changes, alter the format-identifier_crategen project, not this file.
+// --------");
     fix_space(&mut records);
     generate::gen(&records, &mut scope);
     let mut out = std::fs::File::create("../smptera-format-identifiers-rust/src/generated.rs").unwrap();
