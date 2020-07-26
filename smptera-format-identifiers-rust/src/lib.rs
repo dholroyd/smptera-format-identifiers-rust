@@ -7,36 +7,81 @@
 //! [smptera-format-identifiers-rust](https://github.com/dholroyd/smptera-format-identifiers-rust)
 //! project.)
 //!
-//! There are two parts to this crate,
-//!  - The `format_identifier` module contains constants for each registered four-character-code
-//!    value.
-//!  - The `FormatIdentifier` enum contains a variant for each registered four-character-code
-//!    value, plus the `Unknown(FourCC)` variant, that can be used to represent _Format Identifiers_
-//!    which are not currently registered.
+//! The simple wrapper type [`FormatIdentifier`](struct.FormatIdentifier.html) defines a constant
+//! for each _format identifier_ in the SMPTE-RA data,
 //!
-//! ## Warning: `Unknown` and upgrading crate version
-//!
-//! Suppose you match against the `FormatIdentifier::Unknown` variant in your code as follows,
-//!
+//! ```rust
+//! # use smptera_format_identifers_rust::FormatIdentifier;
+//! use std::io::stdout;
+//! println!("{:?}", FormatIdentifier::AC_3);
+//! // prints: FormatIdentifier(FourCC{AC-3})
 //! ```
+//!
+//! ## Usage
+//!
+//! Create from a slice,
+//!
+//! ```rust
+//! # use smptera_format_identifers_rust::FormatIdentifier;
+//! let descriptor_data = b"\x05\x04CUEI";
+//! let id = FormatIdentifier::from(&descriptor_data[2..6]);
+//! assert_eq!(id, FormatIdentifier::CUEI);
+//! ```
+//!
+//! Wrap an existing FourCC value,
+//!
+//! ```rust
 //! # use smptera_format_identifers_rust::FormatIdentifier;
 //! # use four_cc::FourCC;
-//! # let format_id = FormatIdentifier::Ac3;
-//! # fn its_ac3_time() {}
-//! # fn do_this_other_thing() {}
+//! let fcc = FourCC(*b"CUEI");
+//! let id = FormatIdentifier(fcc);
+//! assert_eq!(id, FormatIdentifier::CUEI);
+//! ```
 //!
-//! match format_id {
-//!     FormatIdentifier::Ac3 => its_ac3_time(),
-//!     // .. match additional interesting ids here ..
-//!     FormatIdentifier::Unknown(fourcc) if fourcc==FourCC(*b"othr") => do_this_other_thing(),
-//!     _ => {}, // ignore anything else
+//! Use provided constants in matches,
+//!
+//! ```rust
+//! # use smptera_format_identifers_rust::FormatIdentifier;
+//! # let descriptor_data = b"\x05\x04CUEI";
+//! match FormatIdentifier::from(&descriptor_data[2..6]) {
+//!     FormatIdentifier::CUEI => println!("SCTE-35 suspected"),
+//!     FormatIdentifier::KLVA => println!("SMPTE RP 217-2001 KLV Packets?"),
+//!     other_id => println!("Some other kinda stuff: {:?}", other_id),
 //! }
 //! ```
 //!
-//! you should be aware that if the unknown FourCC value you match against gets registered with
-//! SMPTE-RA and added to a future release of this crate, then the code above could silently stop
-//! working, since the new enum variant (maybe `FormatIdentifier::Othr` in this example) will
-//! now fall into the 'ignored' match arm rather than the `Unknown` one.
+//! Write bytes values,
+//!
+//! ```rust
+//! # use smptera_format_identifers_rust::FormatIdentifier;
+//! # use std::io::{Cursor, Write};
+//! let mut data = vec![];
+//! let mut io = Cursor::new(data);
+//!
+//! let id = &FormatIdentifier::ID3;
+//! io.write(id.into())
+//!     .expect("write failed");
+//!
+//! assert_eq!(io.into_inner(), [b'I', b'D', b'3', b' ']);
+//! ```
+
+use four_cc::FourCC;
+
+/// Identifier for data formats used in MPEG Transport Streams
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub struct FormatIdentifier(pub FourCC);
+
+impl<'a> From<&'a[u8]> for FormatIdentifier {
+    fn from(buf: &[u8]) -> Self {
+        FormatIdentifier(FourCC::from(buf))
+    }
+}
+
+impl<'a> From<&'a FormatIdentifier> for &'a[u8] {
+    fn from(id: &'a FormatIdentifier) -> Self {
+        &(id.0).0
+    }
+}
 
 include!("generated.rs");
 
