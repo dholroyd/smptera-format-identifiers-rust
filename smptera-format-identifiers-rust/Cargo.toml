@@ -1,5 +1,5 @@
 [package]
-name = "smptera-format-identifers-rust"
+name = "smptera-format-identifiers-rust"
 version = "0.2.0"
 authors = ["David Holroyd <dave@badgers-in-foil.co.uk>"]
 edition = "2018"
