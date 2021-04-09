@@ -244,6 +244,13 @@ impl FormatIdentifier {
     /// > Cablelabs wishes to register the hex value of 45-54-56-31 (ASCII value "ETV1") as the etv_format_identifier in the registration descriptor. The etv registration descriptor is defined for use in the elementary stream information loop of the PMT. The ETV registration descriptor SHALL be carried in the elementary stream information loop of the PMT for each program component that conveys an ETV integrated signaling stream or ETV application resource stream.
     pub const ETV1: FormatIdentifier = FormatIdentifier(FourCC(*b"ETV1"));
 
+    /// FourCC: `FOXC`, Registered by: _FOX Corporation _
+    /// 
+    /// Intention:
+    /// 
+    /// > Custom UPID and signaling information
+    pub const FOXC: FormatIdentifier = FormatIdentifier(FourCC(*b"FOXC"));
+
     /// FourCC: `GA94`, Registered by: _Advanced Television Systems Committee_
     /// 
     /// Intention:
@@ -299,6 +306,13 @@ impl FormatIdentifier {
     /// 
     /// > KLV Data as specified in SMPTE Recommended Practice RP 217-2001 - Non-synchronized Mapping of KLV Packets into MPEG-2 Systems Streams, shall use this format_identifier.
     pub const KLVA: FormatIdentifier = FormatIdentifier(FourCC(*b"KLVA"));
+
+    /// FourCC: `LASL`, Registered by: _LaSalle Media LLC_
+    /// 
+    /// Intention:
+    /// 
+    /// > The TSID will be used for KLMV tv station in Laredo, Texas. 
+    pub const LASL: FormatIdentifier = FormatIdentifier(FourCC(*b"LASL"));
 
     /// FourCC: `LIPS`, Registered by: _Society of Motion Picture and Television Engineers_
     /// 
