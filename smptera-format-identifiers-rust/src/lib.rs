@@ -87,8 +87,11 @@ include!("generated.rs");
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
+    fn smoke() {
+        assert_eq!(FormatIdentifier::CUEI, FormatIdentifier::from(&b"CUEI"[..]));
+        assert_eq!(&b"CUEI"[..], <&[u8]>::from(&FormatIdentifier::CUEI));
     }
 }
