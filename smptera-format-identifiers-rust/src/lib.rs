@@ -11,7 +11,7 @@
 //! for each _format identifier_ in the SMPTE-RA data,
 //!
 //! ```rust
-//! # use smptera_format_identifers_rust::FormatIdentifier;
+//! # use smptera_format_identifiers_rust::FormatIdentifier;
 //! use std::io::stdout;
 //! println!("{:?}", FormatIdentifier::AC_3);
 //! // prints: FormatIdentifier(FourCC{AC-3})
@@ -22,7 +22,7 @@
 //! Create from a slice,
 //!
 //! ```rust
-//! # use smptera_format_identifers_rust::FormatIdentifier;
+//! # use smptera_format_identifiers_rust::FormatIdentifier;
 //! let descriptor_data = b"\x05\x04CUEI";
 //! let id = FormatIdentifier::from(&descriptor_data[2..6]);
 //! assert_eq!(id, FormatIdentifier::CUEI);
@@ -31,7 +31,7 @@
 //! Wrap an existing FourCC value,
 //!
 //! ```rust
-//! # use smptera_format_identifers_rust::FormatIdentifier;
+//! # use smptera_format_identifiers_rust::FormatIdentifier;
 //! # use four_cc::FourCC;
 //! let fcc = FourCC(*b"CUEI");
 //! let id = FormatIdentifier(fcc);
@@ -41,7 +41,7 @@
 //! Use provided constants in matches,
 //!
 //! ```rust
-//! # use smptera_format_identifers_rust::FormatIdentifier;
+//! # use smptera_format_identifiers_rust::FormatIdentifier;
 //! # let descriptor_data = b"\x05\x04CUEI";
 //! match FormatIdentifier::from(&descriptor_data[2..6]) {
 //!     FormatIdentifier::CUEI => println!("SCTE-35 suspected"),
@@ -53,7 +53,7 @@
 //! Write bytes values,
 //!
 //! ```rust
-//! # use smptera_format_identifers_rust::FormatIdentifier;
+//! # use smptera_format_identifiers_rust::FormatIdentifier;
 //! # use std::io::{Cursor, Write};
 //! let mut data = vec![];
 //! let mut io = Cursor::new(data);
