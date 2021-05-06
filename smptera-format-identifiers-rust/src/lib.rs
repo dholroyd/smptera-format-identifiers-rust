@@ -65,6 +65,9 @@
 //! assert_eq!(io.into_inner(), [b'I', b'D', b'3', b' ']);
 //! ```
 
+#![forbid(unsafe_code)]
+#![deny(missing_docs)]
+
 use four_cc::FourCC;
 
 /// Identifier for data formats used in MPEG Transport Streams
