@@ -33,6 +33,13 @@ impl FormatIdentifier {
     /// > The RID will be used for Insertion, transmission and inspection of private data for various Arris products.
     pub const ARRS: FormatIdentifier = FormatIdentifier(FourCC(*b"ARRS"));
 
+    /// FourCC: `AV01`, Registered by: _Alliance for Open Media_
+    /// 
+    /// Intention:
+    /// 
+    /// > AOM wishes to register the hex value 41-56-30-31 (ASCII value “AV01") as the video elementary stream ID format_identifier for the AV1 video format. This format is used for delivery of AV1 services in the broadcast ecosystem (DVB, ATSC).
+    pub const AV01: FormatIdentifier = FormatIdentifier(FourCC(*b"AV01"));
+
     /// FourCC: `AVSA`, Registered by: _Audio Video Coding Standard Working Group of China_
     /// 
     /// Intention:
