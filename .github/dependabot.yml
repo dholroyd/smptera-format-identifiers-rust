@@ -16,6 +16,6 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "gitsubmodule"
-    directory: "/smptera-format-identifiers"
+    directory: "/"
     schedule:
       interval: "weekly"
