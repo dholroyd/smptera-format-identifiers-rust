@@ -74,13 +74,13 @@ use four_cc::FourCC;
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub struct FormatIdentifier(pub FourCC);
 
-impl<'a> From<&'a[u8]> for FormatIdentifier {
+impl<'a> From<&'a [u8]> for FormatIdentifier {
     fn from(buf: &[u8]) -> Self {
         FormatIdentifier(FourCC::from(buf))
     }
 }
 
-impl<'a> From<&'a FormatIdentifier> for &'a[u8] {
+impl<'a> From<&'a FormatIdentifier> for &'a [u8] {
     fn from(id: &'a FormatIdentifier) -> Self {
         &(id.0).0
     }
