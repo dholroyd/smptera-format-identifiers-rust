@@ -1,6 +1,6 @@
 [package]
 name = "smptera-format-identifiers-rust"
-version = "0.3.0"
+version = "0.4.0"
 authors = ["David Holroyd <dave@badgers-in-foil.co.uk>"]
 edition = "2018"
 description = "Constants for Format Identifiers defined by the SMPTE Registration Authority"
