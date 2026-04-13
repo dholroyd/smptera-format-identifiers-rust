@@ -65,6 +65,12 @@ impl FormatIdentifier {
     ///
     /// > SMPTE 315M-1999 SMPTE STANDARD for Television -- Camera Positioning Information Conveyed by Ancillary Data Packets, Clause 5 - User data words, 5.1 SMPTE universal label (LABEL) - The 16 words UDW 0-15 carry the SMPTE-administered universal label to identify the class of metadata camera positioning information. The 4 words UDW 8-11 are the ISO/IEC 13818-1 (MPEG) registration identifier.
     pub const CAPO: FormatIdentifier = FormatIdentifier(FourCC(*b"CAPO"));
+    /// FourCC: `CDNT`, Registered by: _Cadent_
+    ///
+    /// Intention:
+    ///
+    /// > Cadent is in need of an assigned RID as we send messages to distributor end points for use cases such as blackouts and triggering dynamic ad insertion.
+    pub const CDNT: FormatIdentifier = FormatIdentifier(FourCC(*b"CDNT"));
     /// FourCC: `CUEI`, Registered by: _Society of Cable Telecommunications Engineers_
     ///
     /// Intention:
@@ -306,6 +312,12 @@ impl FormatIdentifier {
     ///
     /// > To be used in SCTE 35 for custom UPIDs and data carriage
     pub const NBCU: FormatIdentifier = FormatIdentifier(FourCC(*b"NBCU"));
+    /// FourCC: `NFLX`, Registered by: _Netflix Inc._
+    ///
+    /// Intention:
+    ///
+    /// > Netflix Inc. wishes to register the format identifier of 'NFLX' to be used as a Private Unique Program Identifier as described in the SCTE-35 Standard.
+    pub const NFLX: FormatIdentifier = FormatIdentifier(FourCC(*b"NFLX"));
     /// FourCC: `NMR1`, Registered by: _Nielsen Media Research_
     ///
     /// Intention:
@@ -470,6 +482,12 @@ impl FormatIdentifier {
     ///
     /// > TV Guide On Screen wishes to apply for a format identifier [TVG3] that identifies Electronic Program Guide related data.
     pub const TVG3: FormatIdentifier = FormatIdentifier(FourCC(*b"TVG3"));
+    /// FourCC: `TVMS`, Registered by: _TV4 Media_
+    ///
+    /// Intention:
+    ///
+    /// > TV4 Media hereby requests the format_identifier TVMS to be used in the structure of the Managed Private UPID as described in SCTE-35.
+    pub const TVMS: FormatIdentifier = FormatIdentifier(FourCC(*b"TVMS"));
     /// FourCC: `ULE1`, Registered by: _University of Aberdeen (on behalf of the Internet Engineering Task Force, IETF)_
     ///
     /// Intention:
