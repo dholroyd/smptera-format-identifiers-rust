@@ -1,4 +1,3 @@
-use codegen::Scope;
 use std::path::Path;
 use std::io::Write;
 use crate::database::Record;
@@ -9,16 +8,18 @@ mod generate;
 fn main() {
     let mut records = database::load(Path::new("../smptera-format-identifiers/Public.csv"))
         .expect("Public.csv");
-    let mut scope = Scope::new();
-    scope.raw("// --------
+    fix_space(&mut records);
+    let tokens = generate::gen(&records);
+    let file = syn::parse2(tokens).unwrap();
+    let formatted = prettyplease::unparse(&file);
+    let warning = "// --------
 // WARNING
 // This is generated code.
 // If you need changes, alter the format-identifier_crategen project, not this file.
-// --------");
-    fix_space(&mut records);
-    generate::gen(&records, &mut scope);
+// --------\n\n";
     let mut out = std::fs::File::create("../smptera-format-identifiers-rust/src/generated.rs").unwrap();
-    out.write_all(scope.to_string().as_bytes()).expect("failed to write output");
+    out.write_all(warning.as_bytes()).expect("failed to write output");
+    out.write_all(formatted.as_bytes()).expect("failed to write output");
 }
 
 fn fix_space(records: &mut [Record]) {
